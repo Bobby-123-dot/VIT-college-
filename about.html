@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VIT - About</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      /* Background image with a dark overlay gradient */
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+        url('background-campus.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #1abc9c;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: rgba(0,0,0,0.85);
+      padding: 20px 15px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      color: #1abc9c;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #f0f0f0;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.75);
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(26,188,156,0.6);
+    }
+
+    section {
+      margin-bottom: 60px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1abc9c;
+    }
+    section:last-child {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #1abc9c;
+      letter-spacing: 1.2px;
+      border-left: 6px solid #1abc9c;
+      padding-left: 12px;
+    }
+
+    /* Image and text side by side */
+    .content-flex {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 25px;
+      margin-top: 15px;
+    }
+    .content-flex img {
+      flex: 1 1 320px;
+      max-width: 400px;
+      border-radius: 12px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 4px 12px rgba(26,188,156,0.5);
+      cursor: pointer;
+    }
+    .content-flex img:hover {
+      transform: scale(1.05) rotate(1deg);
+    }
+    .content-flex .text {
+      flex: 2 1 450px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
+      text-align: justify;
+    }
+
+    /* Video section */
+    .video-wrapper {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(26,188,156,0.7);
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      display: block;
+    }
+
+    /* FAQ section */
+    .faq-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: rgba(26,188,156,0.1);
+      margin-bottom: 15px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(26,188,156,0.3);
+    }
+    .faq-question {
+      padding: 18px 22px;
+      font-weight: 700;
+      position: relative;
+      font-size: 1.15rem;
+      color: #1abc9c;
+    }
+    .faq-question::after {
+      content: '\f107'; /* FontAwesome chevron-down */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-question::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 22px;
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.4;
+      transition: max-height 0.4s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 15px 22px;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.9);
+      color: #eee;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 60px;
+    }
+    .footer-columns {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      gap: 20px;
+    }
+    .footer-columns div {
+      min-width: 220px;
+    }
+    .footer-columns h3 {
+      color: #1abc9c;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .footer-columns a {
+      display: block;
+      margin: 6px 0;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
+    .footer-columns a:hover {
+      color: #1abc9c;
+    }
+    .social-icons {
+      margin-bottom: 12px;
+    }
+    .social-icons i {
+      font-size: 1.8rem;
+      margin: 0 12px;
+      color: #1abc9c;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .social-icons i:hover {
+      color: #16a085;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px #25d366aa;
+      margin-top: 12px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebe57;
+    }
+    .map iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(26,188,156,0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .content-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .content-flex .text {
+        text-align: center;
+      }
+      .content-flex img {
+        margin: 0 auto;
+      }
+      nav a {
+        font-size: 1rem;
+        margin: 0 8px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Vellore Institute of Technology</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="fees.html">Fees Structure</a>
+    <a href="form.html">Form Fill-up</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Management Section -->
+<section id="management">
+  <h2>Management</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/svVwBpJb/management.jpg" alt="Management Team" loading="lazy" />
+    <div class="text">
+      <p>The management atVIT consists of dedicated professionals committed to academic excellence and institutional growth. The board of directors and senior administrators ensure strategic planning and governance aligned with global standards.</p>
+      <p>Under their leadership, VIT has grown into a multidisciplinary university that nurtures innovation, research, and social responsibility.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Teams Section -->
+<section id="teams">
+  <h2>Our Teams</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/93v0VRkr/teams.jpg" alt="Academic and Administrative Teams" loading="lazy" />
+    <div class="text">
+      <p>Our teams include highly qualified faculty members, skilled administrative staff, and proactive student bodies. Collaborative teamwork fosters a vibrant campus culture focused on student success and community engagement.</p>
+      <p>From research labs to student clubs, the teams maintain a seamless flow of activities and support.</p>
+    </div>
+  </div>
+</section>
+
+  <!-- Global Footprint -->
+<section id="global-footprint">
+  <h2>Global Footprint</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/QFvCrNmc/global.jpg" alt="Global Partnerships" loading="lazy" />
+    <div class="text">
+      <p>VIT has forged strong global partnerships with over 100 universities worldwide, facilitating exchange programs, joint research, and cross-cultural learning experiences.</p>
+      <p>Our students and faculty participate in international seminars, internships, and collaborations that broaden their horizons and prepare them for global challenges.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ranking and Recognition -->
+<section id="ranking-recognition">
+  <h2>Ranking & Recognition</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/zhKjbwjS/ranking.jpg" alt="Ranking and Recognition" loading="lazy" />
+    <div class="text">
+      <p>Vellore Institute has consistently ranked among India's top institutions for education, research, and innovation.</p>
+      <ul>
+        <li>Ranked in NIRF Top 20 Universities in India.</li>
+        <li>QS Asia University Rankings recognized KIIT for excellence.</li>
+        <li>Accredited by NAAC with 'A++' Grade.</li>
+        <li>Recognized globally for its inclusive education and innovation-driven learning environment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+ <!-- History Section -->
+<section id="history">
+  <h2>Our History</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/9mt5z2mv/history.jpg" alt="History of KIIT" loading="lazy" />
+    <div class="text">
+      <p>The Vellore Institute was founded with a vision to bring world-class education to students in India and beyond. It started with a small group of students and faculty but quickly rose to national prominence.</p>
+      <ul>
+        <li>Established in the year 1992 with a humble beginning.</li>
+        <li>Grew to become a multidisciplinary university within a decade.</li>
+        <li>Pioneered education for underprivileged and tribal students in Eastern India.</li>
+        <li>Now houses more than 30,000 students from over 60 countries.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Advisory Council Section -->
+<section id="advisory-council">
+  <h2>Advisory Council</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/15qcxy0/advisory.jpg" alt="Advisory Council" loading="lazy" />
+    <div class="text">
+      <p>The Advisory Council of Vellore Institute brings together eminent personalities from academia, industry, and governance to guide strategic direction and academic excellence.</p>
+      <ul>
+        <li>Includes former IAS officers, international educators, and global leaders.</li>
+        <li>Advises on global partnerships, research initiatives, and curriculum innovation.</li>
+        <li>Promotes a culture of leadership and social responsibility.</li>
+        <li>Ensures alignment with international standards and vision.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Founder Section -->
+<section id="about-founder">
+  <h2>About the Founder</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/jvH7Rt8y/founder.jpg" alt="Founder" loading="lazy" />
+    <div class="text">
+      <p>Prof. Achyuta Samanta, the visionary founder of Kalinga Institute, is a renowned educationist, social reformer, and philanthropist. His journey of transforming lives through education and empowerment has earned global recognition.</p>
+      <ul>
+        <li>Founder of VIT and KISS, uplifting over 30,000 tribal children through education.</li>
+        <li>Recipient of numerous national and international awards including the Gandhi Peace Prize nomination.</li>
+        <li>Member of Parliament and advocate of inclusive growth and equal opportunities.</li>
+        <li>Continues to inspire millions with his dedication to nation-building and human welfare.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!-- Blog Section -->
+<section id="blog">
+  <h2>Latest from Our Blog</h2>
+  <div class="content-flex">
+    <img src="https://i.ibb.co/ccvfkgjt/blog.jpg" alt="Blog Image" loading="lazy" />
+    <div class="text">
+      <h3>Empowering Youth Through Tech Education</h3>
+        <p>How VIT is shaping the digital future of India...</p>
+        <h3>International Student Experience at VIT</h3>
+        <p>What our global learners say about their journey...</p>
+        <h3>Green Campus Initiatives</h3>
+        <p>Steps we’ve taken toward sustainability and environment preservation.</p>
+      <p>Stay updated with the latest insights, news, and stories from the Vellore Institute community. Our blog showcases achievements, student journeys, research highlights, and expert articles.</p>
+      <ul>
+        <li><strong>Campus Diaries:</strong> Real stories from students and alumni about life at VIT.</li>
+        <li><strong>Innovation Spotlights:</strong> Discover path-breaking research and entrepreneurship initiatives.</li>
+        <li><strong>Leadership Insights:</strong> Read interviews and opinion pieces from faculty and industry leaders.</li>
+        <li><strong>Events & Celebrations:</strong> Catch up on seminars, cultural fests, and academic milestones.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section id="video-tour">
+  <h2>Campus Video Tour</h2>
+  <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+      src="https://www.youtube.com/embed/r0AG76CCnH8" 
+      title="VIT University Campus Tour" 
+      allowfullscreen 
+      style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border:none;">
+    </iframe>
+  </div>
+</section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question">What are the admission criteria for VIT?</div>
+        <div class="faq-answer">
+          Admissions are based on entrance exams, merit lists, and counseling sessions. Eligibility varies by course; please check the official site for details.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Does VIT offer scholarships?</div>
+        <div class="faq-answer">
+          Yes, VIT offers merit-based and need-based scholarships to deserving students across various programs.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Are international students accepted?</div>
+        <div class="faq-answer">
+          Absolutely! VIT welcomes foreign students and provides special support services and cultural integration programs.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What kind of placement support is available?</div>
+        <div class="faq-answer">
+          VIT has a dedicated placement cell with strong ties to national and international recruiters, offering internships and full-time job placements.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-columns">
+    <div>
+      <h3>Other Links</h3>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="#">Enquiry</a>
+      <a href="#">Complain Box</a>
+    </div>
+    <div>
+      <h3>Contact Us</h3>
+      <p>Email: info@abc.ac.in</p>
+      <p>Phone: +91-1234567890</p>
+      <a href="https://wa.me/911234567890" target="_blank" class="whatsapp-btn" rel="noopener">Chat on WhatsApp</a>
+      <div class="map">
+        <iframe src="https://maps.google.com/maps?q=VIT&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="social-icons">
+    <i class="fab fa-facebook" aria-label="Facebook"></i>
+    <i class="fab fa-twitter" aria-label="Twitter"></i>
+    <i class="fab fa-instagram" aria-label="Instagram"></i>
+    <i class="fab fa-linkedin" aria-label="LinkedIn"></i>
+  </div>
+  <p>© 2025 Vellore Institute of Technology. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // FAQ toggle logic
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.querySelector('.faq-question').addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
+</body>
+</html>

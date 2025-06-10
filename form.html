@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Form Fill-Up | Vellore Institute</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom right, #f0f4f8, #dff6f0);
+      padding-top: 70px; /* space for sticky header */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Sticky header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #004d4d;
+      z-index: 1100;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 10px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    nav a:hover,
+    nav a.active {
+      background: #00bfa5;
+    }
+
+    /* Main container */
+    .container {
+      max-width: 1000px;
+      width: 90%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px 25px;
+      animation: fadeIn 1s ease-in-out;
+      margin-bottom: 40px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      color: #004d4d;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 600;
+      color: #004d4d;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #00bfa5;
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    /* Gender radio buttons */
+    .gender-options {
+      display: flex;
+      gap: 25px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .gender-options label {
+      font-weight: normal;
+      margin: 0;
+      cursor: pointer;
+    }
+    .gender-options input[type="radio"] {
+      margin-right: 6px;
+      cursor: pointer;
+    }
+
+    button {
+      background: #004d4d;
+      color: white;
+      padding: 12px 26px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background 0.3s;
+      display: block;
+      margin: 25px auto 0;
+      width: 100%;
+      max-width: 250px;
+    }
+    button:hover {
+      background: #00bfa5;
+    }
+
+    /* Downloads & Contact Info */
+    .brochures {
+      margin-top: 40px;
+    }
+    .brochures h3, .contact-info h3 {
+      color: #004d4d;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .download-links {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .download-links a {
+      display: inline-block;
+      margin: 8px 12px;
+      background: #00bfa5;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .download-links a:hover {
+      background: #00796b;
+    }
+
+    .contact-info {
+      text-align: center;
+      color: #004d4d;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    .contact-info p {
+      margin: 6px 0;
+      font-weight: 400;
+    }
+
+    /* Footer styles */
+    footer.footer {
+      background: #003333;
+      color: #ccc;
+      padding: 40px 20px;
+      width: 100%;
+      max-width: 1000px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+    .footer .column {
+      flex: 1 1 280px;
+      min-width: 220px;
+    }
+    .footer h4 {
+      color: #00bfa5;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .footer a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin: 6px 0;
+      transition: color 0.3s;
+    }
+    .footer a:hover {
+      color: #00bfa5;
+    }
+    .social-icons a {
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .whatsapp-button:hover {
+      background: #128c7e;
+    }
+
+    /* Copyright bar */
+    .copyright-bar {
+      background: #002222;
+      color: white;
+      padding: 12px 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 0 0 10px 10px;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      nav {
+        gap: 10px;
+        padding: 12px 8px;
+      }
+      nav a {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+      }
+      .container {
+        padding: 20px 15px;
+        width: 95%;
+      }
+      button {
+        max-width: 100%;
+      }
+      .gender-options {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer {
+        flex-direction: column;
+        padding: 30px 15px;
+      }
+      .footer .column {
+        width: 100%;
+      }
+      iframe {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1> Vellore Institute of Technology </h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="fees.html">Fees Structure</a>
+    <a href="form.html" class="active">Form Fill-up</a>
+  </nav>
+</header>
+
+<main class="container" role="main" aria-label="University Admission Form">
+  <h2>University Admission Form</h2>
+  <form id="admissionForm" novalidate>
+    <label for="name">Full Name <span aria-hidden="true" style="color:red;">*</span></label>
+    <input type="text" id="name" name="name" required aria-required="true" />
+
+    <label for="fatherName">Father's Name <span aria-hidden="true" style="color:red;">*</span></label>
+    <input type="text" id="fatherName" name="fatherName" required aria-required="true" />
+
+    <label for="fatherOccupation">Father's Occupation</label>
+    <input type="text" id="fatherOccupation" name="fatherOccupation" />
+
+    <label for="email">Email Address <span aria-hidden="true" style="color:red;">*</span></label>
+    <input type="email" id="email" name="email" required aria-required="true" />
+
+    <label for="phone">Phone Number <span aria-hidden="true" style="color:red;">*</span></label>
+    <input type="tel" id="phone" name="phone" required aria-required="true" pattern="[0-9]{10,15}" placeholder="Digits only" />
+
+    <label for="bloodGroup">Blood Group</label>
+    <select id="bloodGroup" name="bloodGroup" aria-label="Select your blood group">
+      <option value="" selected disabled>-- Select Blood Group --</option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="O+">O+</option>
+      <option value="O-">O-</option>
+    </select>
+
+    <label>Sex <span aria-hidden="true" style="color:red;">*</span></label>
+    <div class="gender-options" role="radiogroup" aria-required="true" aria-labelledby="sexLabel">
+      <label><input type="radio" name="sex" value="Male" required /> Male</label>
+      <label><input type="radio" name="sex" value="Female" /> Female</label>
+      <label><input type="radio" name="sex" value="Others" /> Others</label>
+    </div>
+
+    <fieldset>
+      <legend style="font-weight:600; color:#004d4d; margin-bottom: 12px;">10th Standard Details</legend>
+
+      <label for="tenthPass">10th Pass Year <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="number" id="tenthPass" name="tenthPass" min="1950" max="2100" required aria-required="true" />
+
+      <label for="tenthBoard">10th Board <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="text" id="tenthBoard" name="tenthBoard" required aria-required="true" />
+
+      <label for="tenthPercentage">10th Percentage (%) <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="number" id="tenthPercentage" name="tenthPercentage" min="0" max="100" step="0.01" required aria-required="true" />
+    </fieldset>
+
+    <fieldset style="margin-top: 30px;">
+      <legend style="font-weight:600; color:#004d4d; margin-bottom: 12px;">12th Standard Details</legend>
+
+      <label for="twelfthPass">12th Pass Year <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="number" id="twelfthPass" name="twelfthPass" min="1950" max="2100" required aria-required="true" />
+
+      <label for="twelfthBoard">12th Board <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="text" id="twelfthBoard" name="twelfthBoard" required aria-required="true" />
+
+      <label for="twelfthPercentage">12th Percentage (%) <span aria-hidden="true" style="color:red;">*</span></label>
+      <input type="number" id="twelfthPercentage" name="twelfthPercentage" min="0" max="100" step="0.01" required aria-required="true" />
+    </fieldset>
+
+    <label for="course">Select Course</label>
+    <select id="course" name="course" aria-label="Select course">
+      <option>BSc IT</option>
+      <option>BCA</option>
+      <option>MCA</option>
+      <option>Diploma in Digital Marketing</option>
+      <option>Certification in AI</option>
+    </select>
+
+    <label for="message">Additional Information</label>
+    <textarea id="message" name="message" rows="4" placeholder="Anything else you'd like to mention..."></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <section class="brochures" aria-label="Downloads section">
+    <h3>Downloads</h3>
+    <div class="download-links">
+      <a href="pdfs/eligibility.pdf" download>Eligibility Criteria (PDF)</a>
+      <a href="pdfs/brochure.pdf" download>Information Brochure</a>
+      <a href="https://exam.kalingauniversity.edu/apply" target="_blank" rel="noopener noreferrer">Apply for Online Entrance Exam</a>
+    </div>
+  </section>
+
+  <section class="contact-info" aria-label="Contact information">
+    <h3>Contact Information</h3>
+    <p><strong>Email:</strong> admissions@kalingauniversity.edu</p>
+    <p><strong>Write to:</strong> Kalinga Institute, Bhubaneswar, Odisha - 751024</p>
+  </section>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="column">
+    <h4>Quick Links</h4>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Enquiry</a>
+  </div>
+  <div class="column">
+    <h4>Other Links</h4>
+    <a href="#">Admissions</a>
+    <a href="#">Examination</a>
+    <a href="#">Scholarships</a>
+    <a href="#">Alumni</a>
+    <a href="#">Careers</a>
+  </div>
+  <div class="column">
+    <h4>Contact Us</h4>
+    <p>Email: info@abc.edu</p>
+    <p>Phone: +91-1234567890</p>
+    <a href="https://wa.me/911234567890" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+  <div class="column">
+    <h4>Location</h4>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.683210361713!2d85.85304671485729!3d20.296059386430583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190bd8c04f83dd%3A0x5f7b7b3ef7f5e4a3!2sKalinga%20Institute%20of%20Industry%20and%20Technology!5e0!3m2!1sen!2sin!4v1689900000000!5m2!1sen!2sin" 
+      allowfullscreen 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      aria-label="Vellore Institute location on Google Maps"
+    ></iframe>
+  </div>
+</footer>
+
+<div class="copyright-bar">
+  &copy; 2025 Vellore Institute of Technology. All rights reserved.
+</div>
+
+<script>
+  document.getElementById('admissionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Simple form validation (can be extended)
+    const phone = this.phone.value.trim();
+    if (!/^\d{10,15}$/.test(phone)) {
+      alert('Please enter a valid phone number (digits only, 10-15 characters).');
+      this.phone.focus();
+      return;
+    }
+
+    alert("Thank you! Your application has been submitted.");
+    this.reset();
+  });
+</script>
+</body>
+</html>

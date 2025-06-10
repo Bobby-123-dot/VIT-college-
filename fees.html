@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees Structure - VIT</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #004d40;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+    header nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover, header nav a.active {
+      text-decoration: underline;
+    }
+    section {
+      padding: 40px 20px;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #009688;
+      color: white;
+    }
+    .filter input {
+      padding: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .download {
+      margin-top: 10px;
+    }
+    .download a {
+      color: #00796b;
+      text-decoration: none;
+    }
+    #calculator {
+      margin-top: 20px;
+      padding: 20px;
+      background: #e0f2f1;
+      border-radius: 8px;
+    }
+    #calculator input {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+     /* Footer */
+    footer {
+      background: rgba(0,0,0,0.9);
+      color: #eee;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.95rem;
+      margin-top: 60px;
+    }
+    .footer-columns {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      gap: 20px;
+    }
+    .footer-columns div {
+      min-width: 220px;
+    }
+    .footer-columns h3 {
+      color: #1abc9c;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .footer-columns a {
+      display: block;
+      margin: 6px 0;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
+    .footer-columns a:hover {
+      color: #1abc9c;
+    }
+    .social-icons {
+      margin-bottom: 12px;
+    }
+    .social-icons i {
+      font-size: 1.8rem;
+      margin: 0 12px;
+      color: #1abc9c;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    .social-icons i:hover {
+      color: #16a085;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px #25d366aa;
+      margin-top: 12px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebe57;
+    }
+    .map iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(26,188,156,0.6);
+    }
+
+   @media screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-section {
+        flex-direction: column;
+      }
+
+      table, th, td {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Vellore Institute of Technology</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="courses.html">Courses</a>
+      <a href="fees.html" class="active">Fees</a>
+      <a href="form.html">Form Fill-up</a>
+    </nav>
+  </header>
+
+  <section id="fees">
+    <h3>Search & Filter Fees</h3>
+    <div class="filter">
+      <input type="text" id="searchInput" onkeyup="filterFees()" placeholder="Search course (e.g. BCA, MBA, Diploma)...">
+    </div>
+    <table id="feesTable">
+      <thead>
+        <tr><th>Course</th><th>Type</th><th>Tuition Fee</th><th>Duration</th><th>Brochure</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>BCA</td><td>UG</td><td>₹50,000/year</td><td>3 years</td><td><a href="bca-fees.pdf" target="_blank">Download</a></td></tr>
+        <tr><td>MBA</td><td>PG</td><td>₹1,20,000/year</td><td>2 years</td><td><a href="mba-fees.pdf" target="_blank">Download</a></td></tr>
+        <tr><td>Diploma in IT</td><td>Diploma</td><td>₹35,000/year</td><td>2 years</td><td><a href="dip-it.pdf" target="_blank">Download</a></td></tr>
+        <tr><td>Digital Marketing</td><td>Certification</td><td>₹15,000</td><td>6 months</td><td><a href="dm-cert.pdf" target="_blank">Download</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="hostel">
+    <h3>Hostel Fees</h3>
+    <table>
+      <thead>
+        <tr><th>Gender</th><th>Room Type</th><th>Hostel Fee</th><th>Facilities</th><th>PDF</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Boys</td><td>Double</td><td>₹60,000/year</td><td>WiFi, Mess, Laundry</td><td><a href="hostel-boys.pdf" target="_blank">Download</a></td></tr>
+        <tr><td>Girls</td><td>Triple</td><td>₹55,000/year</td><td>WiFi, Mess, Security</td><td><a href="hostel-girls.pdf" target="_blank">Download</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="calculator">
+    <h3>Fee Calculator</h3>
+    <label for="courseFee">Enter Annual Fee (₹):</label>
+    <input type="number" id="courseFee" placeholder="e.g. 50000">
+    <label for="years">Number of Years:</label>
+    <input type="number" id="years" placeholder="e.g. 3">
+    <button onclick="calculateTotal()">Calculate Total</button>
+    <p id="totalFee"></p>
+  </section>
+
+  <section id="charts">
+    <h3>Fee Comparison Chart</h3>
+    <canvas id="feeChart"></canvas>
+  </section>
+
+  <footer>
+  <div class="footer-columns">
+    <div>
+      <h3>Other Links</h3>
+      <a href="#">Alumni</a>
+      <a href="#">Library</a>
+      <a href="#">Research</a>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="#">UGC</a>
+      <a href="#">NAAC</a>
+      <a href="#">AICTE</a>
+    </div>
+    <div>
+      <h3>Contact Us</h3>
+      <p>Email: info@abc.ac.in</p>
+      <p>Phone: +91-1234567890</p>
+      <a href="https://wa.me/911234567890" target="_blank" class="whatsapp-btn" rel="noopener">Chat on WhatsApp</a>
+      <div class="map">
+        <iframe src="https://maps.google.com/maps?q=KIIT&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="social-icons">
+    <i class="fab fa-facebook" aria-label="Facebook"></i>
+    <i class="fab fa-twitter" aria-label="Twitter"></i>
+    <i class="fab fa-instagram" aria-label="Instagram"></i>
+    <i class="fab fa-linkedin" aria-label="LinkedIn"></i>
+  </div>
+  <p>© 2025 Vellore Institute of Technology. All Rights Reserved.</p>
+</footer>
+
+  <script>
+    function filterFees() {
+      const input = document.getElementById("searchInput").value.toUpperCase();
+      const rows = document.querySelectorAll("#feesTable tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toUpperCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+
+    function calculateTotal() {
+      const fee = parseFloat(document.getElementById("courseFee").value);
+      const years = parseInt(document.getElementById("years").value);
+      const total = fee * years;
+      document.getElementById("totalFee").textContent = `Total Fee: ₹${total.toLocaleString()}`;
+    }
+
+    const ctx = document.getElementById('feeChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['BCA', 'MBA', 'Diploma IT', 'Digital Marketing'],
+        datasets: [{
+          label: 'Annual Fee (₹)',
+          data: [50000, 120000, 35000, 15000],
+          backgroundColor: '#009688'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  </script>
+</body>
+</html>
